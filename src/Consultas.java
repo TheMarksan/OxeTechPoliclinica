@@ -1,13 +1,16 @@
+import java.time.LocalDateTime;
+
 public class Consultas {
     private Medico medico;
     private Paciente paciente;
-
     private String especialidade;
+    private LocalDateTime dataHora;
 
-    public Consultas(Medico medico, Paciente paciente, String especialidade) {
+    public Consultas(Medico medico, Paciente paciente, String especialidade, LocalDateTime dataHora) {
         this.medico = medico;
         this.paciente = paciente;
         this.especialidade = especialidade;
+        this.dataHora = dataHora;
     }
 
     public Medico getMedico() {
@@ -32,5 +35,13 @@ public class Consultas {
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 }

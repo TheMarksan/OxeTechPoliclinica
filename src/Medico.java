@@ -5,9 +5,9 @@ public class Medico {
 
     private double salario;
 
-    private String especialidade;
+    private Especialidade especialidade;
 
-    public Medico(String nome, String cpf, String crm, double salario, String especialidade) {
+    public Medico(String nome, String cpf, String crm, double salario, Especialidade especialidade) {
         this.nome = nome;
         this.cpf = cpf;
         this.crm = crm;
@@ -47,11 +47,11 @@ public class Medico {
         this.salario = salario;
     }
 
-    public String getEspecialidade() {
+    public Especialidade getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
 }

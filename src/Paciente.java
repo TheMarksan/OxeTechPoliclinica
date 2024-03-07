@@ -2,10 +2,10 @@ public class Paciente {
     private String nome;
     private String cpf;
     private String cartaoSus;
-    public String especialidade;
+    public Especialidade especialidade;
 
 
-    public Paciente(String nome, String cpf, String cartaoSus, String especialidade) {
+    public Paciente(String nome, String cpf, String cartaoSus, Especialidade especialidade) {
         this.nome = nome;
         this.cpf = cpf;
         this.cartaoSus = cartaoSus;
@@ -36,11 +36,11 @@ public class Paciente {
         this.cartaoSus = cartaoSus;
     }
 
-    public String getEspecialidade() {
+    public Especialidade getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
 
