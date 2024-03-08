@@ -42,8 +42,8 @@ public class Main {
                     //listar consultas do paciente ou médico (com data, hora e infos dos dois). Consultas estão vinculadas ao CRM ou o numero do cartão SUS
                     break;
                 case 5:
-                    System.out.println("Qual consulta quer cancelar? ");
-                    //remover consulta da arrayList consultas
+                    System.out.println("Vamos cancelar uma consulta");
+                    desmarcarConsulta();
                     break;
                 case 6:
                     System.out.println("Obrigado por utilizar nossos serviços, boa recuperação!");
@@ -59,14 +59,14 @@ public class Main {
         String name = scanner.nextLine();
         System.out.print("Digite o CPF do paciente: ");
         String cpf = scanner.nextLine();
-        while (!validarCPF(cpf) || cpfJaCadastrado(cpf)) {
+        /*while (!validarCPF(cpf) || cpfJaCadastrado(cpf)) {
             if (!validarCPF(cpf)) {
                 System.out.println("Formato de CPF inválido. Tente novamente no formato válido (xxx.xxx.xxx-xx):");
             } else {
                 System.out.println("Esse CPF já está cadastrado. Tente novamente:");
             }
             cpf = scanner.nextLine();
-        }
+        }*/
         System.out.print("Digite o cartão SUS do paciente: ");
         String cardSUS= scanner.nextLine();
 
@@ -90,7 +90,7 @@ public class Main {
         String name = scanner.nextLine();
         System.out.print("Digite o CPF do médico: ");
         String cpf = scanner.nextLine();
-        while (!validarCPF(cpf) || cpfJaCadastrado(cpf) || medicoComCPFExistente(cpf)) {
+        /*while (!validarCPF(cpf) || cpfJaCadastrado(cpf) || medicoComCPFExistente(cpf)) {
             if (!validarCPF(cpf)) {
                 System.out.println("Formato de CPF inválido. Tente novamente no formato válido (xxx.xxx.xxx-xx):");
             } else if (cpfJaCadastrado(cpf)) {
@@ -99,18 +99,18 @@ public class Main {
                 System.out.println("Este CPF já está cadastrado para outro médico. Tente novamente:");
             }
             cpf = scanner.nextLine();
-        }
+        }*/
 
         System.out.println("Digite o CRM do médico: (xxxx-UF)");
         String crm= scanner.nextLine();
-        while (!validarCRM(crm) || crmJaCadastrado(crm)) {
+        /*while (!validarCRM(crm) || crmJaCadastrado(crm)) {
             if (!validarCRM(crm)) {
                 System.out.println("Digite o CRM no formato válido (xxxx-UF):");
             } else if (crmJaCadastrado(crm)) {
                 System.out.println("Este CRM já está cadastrado. Tente novamente:");
             }
             crm = scanner.nextLine();
-        }
+        }*/
 
         System.out.print("Digite o salário do médico: ");
         double salario = scanner.nextDouble();
@@ -178,6 +178,21 @@ public class Main {
 
         System.out.println("Consulta agendada com sucesso!");
     }
+
+    private static void desmarcarConsulta() {
+        for (int i = 0; i < Consultas.size(); i++) {
+            if (Consultas.get(i).getPaciente() == null) {
+                System.out.println((i + 1) + ". " + "Nenhuma consulta agendada");
+                break;
+            }
+            System.out.println((i + 1) + ". " + Consultas.get(i).getPaciente().getNome());
+        }
+        int index = scanner.nextInt();
+        scanner.nextLine();
+        Consultas.get(index - 1).setPaciente(null);
+        System.out.println("Consulta desmarcada com sucesso!");
+    }
+
 
 
     public static boolean validarCPF(String cpf) {
