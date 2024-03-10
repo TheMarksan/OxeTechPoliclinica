@@ -18,7 +18,7 @@ public class Main {
             System.out.println("1 para Cadastrar um Paciente");
             System.out.println("2 para Cadastrar um Médico");
             System.out.println("3 para Agendar Consulta");
-            System.out.println("4 para Listar Agendamentos");
+            System.out.println("4 para Listar todas as consultas");
             System.out.println("5 para Cancelar alguma Consulta");
             System.out.println("ou digite 6 para Sair");
             System.out.println("O que você deseja? ");
@@ -38,7 +38,8 @@ public class Main {
                     agendarMedico();
                     break;
                 case 4:
-                    System.out.println("Listando atendimentos ");
+                    System.out.println("Listando todas as consultas");
+                    listarTodasConsultas();
                     //listar consultas do paciente ou médico (com data, hora e infos dos dois). Consultas estão vinculadas ao CRM ou o numero do cartão SUS
                     break;
                 case 5:
@@ -193,9 +194,22 @@ public class Main {
         System.out.println("Consulta desmarcada com sucesso!");
     }
 
+    private static void listarTodasConsultas() {
+        for (int i = 0; i < Consultas.size(); i++) {
+            if (Consultas.get(i).getPaciente() == null) {
+                System.out.println((i + 1) + ". " + "Para esse paciente não tem consulta agendada.");
+                break;
+            }else if (Consultas.get(i).getMedico() == null){
+                System.out.println((i + 1) + ". " + "Nenhuma consulta agendada");
+                break;
+            }
+            System.out.println((i + 1) + ". " + Consultas.get(i).getMedico().getNome() + " - Especialidade - " + Consultas.get(i).getMedico().getEspecialidade().getNome()
+                    + " CRM - " + Consultas.get(i).getMedico().getCrm() + "\n Paciente: " + Consultas.get(i).getPaciente().getNome() + " Cartão do Sus: " + Consultas.get(i).getPaciente().getCartaoSus());
+        }
+    }
 
 
-    public static boolean validarCPF(String cpf) {
+   /* public static boolean validarCPF(String cpf) {
         String regex = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}";
 
         return cpf.matches(regex);
@@ -205,7 +219,7 @@ public class Main {
         String regex = "\\d{4}-[A-Z]{2}";
 
         return crm.matches(regex);
-    }
+    }*/
 
     private static boolean cpfJaCadastrado(String cpf) {
         for (Paciente paciente : Pacientes) {

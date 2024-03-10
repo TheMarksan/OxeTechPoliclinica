@@ -44,4 +44,14 @@ public class Consultas {
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
     }
+
+    @Override
+    public String toString() {
+        return "Consultas{" +
+                "medico=" + medico +
+                ", paciente=" + paciente +
+                ", especialidade='" + especialidade + '\'' +
+                ", dataHora=" + dataHora +
+                '}';
+    }
 }
