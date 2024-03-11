@@ -193,20 +193,24 @@ public class Main {
         Consultas.get(index - 1).setPaciente(null);
         System.out.println("Consulta desmarcada com sucesso!");
     }
-
     private static void listarTodasConsultas() {
         for (int i = 0; i < Consultas.size(); i++) {
             if (Consultas.get(i).getPaciente() == null) {
                 System.out.println((i + 1) + ". " + "Para esse paciente não tem consulta agendada.");
                 break;
-            }else if (Consultas.get(i).getMedico() == null){
+            } else if (Consultas.get(i).getMedico() == null) {
                 System.out.println((i + 1) + ". " + "Nenhuma consulta agendada");
                 break;
             }
-            System.out.println((i + 1) + ". " + Consultas.get(i).getMedico().getNome() + " - Especialidade - " + Consultas.get(i).getMedico().getEspecialidade().getNome()
-                    + " CRM - " + Consultas.get(i).getMedico().getCrm() + "\n Paciente: " + Consultas.get(i).getPaciente().getNome() + " Cartão do Sus: " + Consultas.get(i).getPaciente().getCartaoSus());
+            LocalDateTime dataHoraConsulta = Consultas.get(i).getDataHora();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            String dataHoraFormatada = dataHoraConsulta.format(formatter);
+            System.out.println((i + 1) + ". Médico: " + Consultas.get(i).getMedico().getNome() + "\n- Especialidade - " + Consultas.get(i).getMedico().getEspecialidade().getNome()
+                    + " CRM - " + Consultas.get(i).getMedico().getCrm() + "\n Paciente: " + Consultas.get(i).getPaciente().getNome() + "\nCartão do Sus: " + Consultas.get(i).getPaciente().getCartaoSus()
+                    + "\n Data e Hora da Consulta: " + dataHoraFormatada);
         }
     }
+
 
 
    /* public static boolean validarCPF(String cpf) {
